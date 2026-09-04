@@ -61,7 +61,7 @@ _[O Quick Sort também segue a lógica de "Dividir para Conquistar", só que de 
 
 ### 2. Diagramas livres
 
-_[`./diagrama-livre.png` ]_
+![Diagrama livre do particionamento do Quick Sort](imagens/diagrama-livre.jpeg)
 
 ### 3. Pseudocódigo ou código
 
@@ -85,7 +85,8 @@ _[`./diagrama-livre.png` ]_
 
 ### 4. Diagrama formal (UML, DFD, ...)
 
-_[`./diagrama-formal.png `]_
+![Diagrama formal do particionamento do Quick Sort](imagens/diagrama-formal.jpeg)
+
 
 ### Comparação entre as perspectivas
 
@@ -140,7 +141,7 @@ _[O cliente realiza um pedido pelo aplicativo, escolhe os produtos e efetua o pa
 
 > Crie um diagrama que represente esse modelo mental (pode ser descrito em texto, ou anexado como imagem no repositório).
 
-_[` ./diagrama-delivery.png`]_
+![Diagrama Delivery](imagens/diagrama-delivery.png)
 
 
 ---
