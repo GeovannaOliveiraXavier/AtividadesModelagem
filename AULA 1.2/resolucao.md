@@ -19,7 +19,7 @@ modelo (em papel).
 
 **Resolução:**
 
-![Como Funciona a Netflix](/imagens/ComoFuncionaNetflix.jpeg)
+![Como Funciona a Netflix](imagens/ComoFuncionaNetflix.jpeg)
 
 *Figura 1 — Diagrama de como funciona a netflix em minha visão.*
 
@@ -57,7 +57,7 @@ papel).
 
 **Resolução:**
 
-![Como Funciona a UBER](/imagens/ComoFuncionaUber.jpeg)
+![Como Funciona a UBER](imagens/ComoFuncionaUber.jpeg)
 
 *Figura 2 — Diagrama de como funciona a UBER em minha visão.*
 
@@ -79,13 +79,13 @@ diferenças e limitações da ferramenta (se houver).
 Para recriar os diagramas, eu utilizaria uma ferramenta como o Draw.io, pois ela permite criar diagramas utilizando caixas, setas, linhas e outros elementos.
 
 **Para o modelo da Netflix, por exemplo:**
-![Funcionamento da Netflix usando ferramenta](/imagens/NETFLIX.jpg)
+![Funcionamento da Netflix usando ferramenta](imagens/NETFLIX.jpg)
 
 *Figura 3 — Diagrama usando Draw.io para explicar a Netflix.*
 
 
 **Para a Uber:**
-![Funcionamento da Uber usando ferramenta](/imagens/UBER.jpg)
+![Funcionamento da Uber usando ferramenta](imagens/UBER.jpg)
 
 *Figura 4 — Diagrama usando Draw.io para explicar a Uber.*
 
@@ -108,6 +108,6 @@ Como funciona o Spotify?
 O Spotify é uma plataforma de streaming de músicas e podcasts. O usuário cria uma conta e pode procurar artistas, músicas, álbuns ou playlists.
 A plataforma também utiliza o histórico e as preferências do usuário para fazer recomendações.
 
-![Funcionamento do Spotify](/imagens/ComoFuncionaSpotify.jpeg)
+![Funcionamento do Spotify](imagens/ComoFuncionaSpotify.jpeg)
 
 *Figura 4 — Modelo mental explicando o funcionamento do Spotify.*
