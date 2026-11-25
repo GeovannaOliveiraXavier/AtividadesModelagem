@@ -1,0 +1,21 @@
+name: Build
+
+on: 
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * 0' # weekly
+
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'temurin'
+      - name: Build with Gradle
+        run: ./gradlew clean build 

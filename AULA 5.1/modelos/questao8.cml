@@ -1,0 +1,56 @@
+/* Aula 5.1 - Questao 8 - ACL, OHS e PL (2)
+ * Catalogo de Produtos e anfitriao (OHS) e expoe uma Linguagem Publicada (PL)
+ * para Loja Virtual e Analise de Vendas.
+ * Loja Virtual se protege do legado de Gestao de Estoque com uma ACL.
+ */
+ContextMap ComercioEletronico {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+
+	contains CatalogoDeProdutos
+	contains LojaVirtual
+	contains AnaliseDeVendas
+	contains GestaoDeEstoque
+
+	/* OHS + PL: API publica de consulta com um esquema de Produto documentado */
+	CatalogoDeProdutos [U,OHS,PL]->[D] LojaVirtual
+	CatalogoDeProdutos [U,OHS,PL]->[D] AnaliseDeVendas
+
+	/* ACL: a Loja traduz os dados do legado de estoque */
+	LojaVirtual [D,ACL]<-[U] GestaoDeEstoque
+}
+
+BoundedContext CatalogoDeProdutos {
+	type = FEATURE
+	domainVisionStatement = "Gerencia informações sobre produtos, como nome, descrição, categorias e preço."
+	responsibilities = "Produtos, Categorias, Preços"
+
+	Aggregate Produto
+	Aggregate Categoria
+}
+
+BoundedContext LojaVirtual {
+	type = APPLICATION
+	domainVisionStatement = "Exibe informações detalhadas dos produtos para os clientes e processa pedidos."
+	responsibilities = "Vitrine, Pedidos"
+
+	Aggregate Vitrine
+	Aggregate Pedido
+	Aggregate Disponibilidade
+}
+
+BoundedContext AnaliseDeVendas {
+	type = FEATURE
+	domainVisionStatement = "Analisa dados de vendas, como tendências de consumo e desempenho de produtos."
+	responsibilities = "Relatórios, Tendências"
+
+	Aggregate Relatorio
+}
+
+BoundedContext GestaoDeEstoque {
+	type = SYSTEM
+	domainVisionStatement = "Sistema legado de gestão de estoque, com modelo de dados ultrapassado e complexo, porém funcional."
+	implementationTechnology = "Sistema legado"
+
+	Aggregate Estoque
+}

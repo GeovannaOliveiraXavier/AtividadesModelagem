@@ -1,0 +1,45 @@
+/* Aula 5.1 - Questao 6 - CF e ACL (2)
+ * Planejamento de Rotas e Conformista (CF) ao modelo de veiculos da Gestao de Frotas.
+ * Planejamento de Rotas se protege do sistema legado de Cobranca de Pedagios com uma ACL.
+ */
+ContextMap EntregasComFrota {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+
+	contains GestaoDeFrotas
+	contains PlanejamentoDeRotas
+	contains CobrancaDePedagios
+
+	/* Conformista: Rotas usa o modelo de Veiculo da Frota do jeito que ele e */
+	PlanejamentoDeRotas [D,CF]<-[U] GestaoDeFrotas
+
+	/* Camada Anti-Corrupcao: traduz os dados do legado de pedagios */
+	PlanejamentoDeRotas [D,ACL]<-[U] CobrancaDePedagios
+}
+
+BoundedContext GestaoDeFrotas {
+	type = FEATURE
+	domainVisionStatement = "Gerencia veículos, motoristas e manutenção."
+	responsibilities = "Veículos, Motoristas, Manutenção, Disponibilidade"
+
+	Aggregate Veiculo
+	Aggregate Motorista
+	Aggregate Manutencao
+}
+
+BoundedContext PlanejamentoDeRotas {
+	type = FEATURE
+	domainVisionStatement = "Planeja as rotas de entrega com base na localização dos clientes e na disponibilidade dos veículos."
+	responsibilities = "Rotas, Custo da rota"
+
+	Aggregate Rota
+	Aggregate CustoDaRota
+}
+
+BoundedContext CobrancaDePedagios {
+	type = SYSTEM
+	domainVisionStatement = "Sistema legado utilizado para cálculos e informações relativas a pedágios."
+	implementationTechnology = "Sistema legado"
+
+	Aggregate Pedagio
+}

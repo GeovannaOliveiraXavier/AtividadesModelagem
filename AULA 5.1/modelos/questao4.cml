@@ -1,0 +1,49 @@
+/* Aula 5.1 - Questao 4 - Parceria e Nucleo Compartilhado (3)
+ * Gestao de Pedidos e Logistica trabalham em Parceria (P).
+ * Os tres contextos compartilham o modelo "DadosDeEntrega" (cliente, endereco e contato)
+ * por meio de um Nucleo Compartilhado (SK).
+ */
+ContextMap EntregaDePedidos {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+
+	contains GestaoDePedidos
+	contains Logistica
+	contains GestaoDeClientes
+
+	/* Parceria: um depende do outro para o pedido chegar ao cliente */
+	GestaoDePedidos [P]<->[P] Logistica
+
+	/* Nucleo Compartilhado: modelo comum de DadosDeEntrega */
+	GestaoDePedidos [SK]<->[SK] GestaoDeClientes
+	Logistica [SK]<->[SK] GestaoDeClientes
+}
+
+BoundedContext GestaoDePedidos {
+	type = FEATURE
+	domainVisionStatement = "Gerencia pedidos de clientes, incluindo itens, quantidades, preços e status de entrega."
+	responsibilities = "Pedidos, Itens, Status de entrega"
+
+	Aggregate Pedido
+	/* usa DadosDeEntrega do nucleo compartilhado */
+}
+
+BoundedContext Logistica {
+	type = FEATURE
+	domainVisionStatement = "Gerencia a entrega de pedidos, incluindo rotas, veículos e prazos de entrega."
+	responsibilities = "Rotas, Veículos, Prazos"
+
+	Aggregate Entrega
+	/* usa DadosDeEntrega do nucleo compartilhado */
+}
+
+BoundedContext GestaoDeClientes {
+	type = FEATURE
+	domainVisionStatement = "Gerencia informações sobre clientes, como nome, endereço, contato e histórico de compras."
+	responsibilities = "Clientes, Endereços, Histórico de compras"
+
+	Aggregate Cliente
+
+	/* Nucleo Compartilhado: modulo comum aos tres contextos */
+	Aggregate DadosDeEntrega
+}

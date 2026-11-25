@@ -1,0 +1,49 @@
+/* Aula 5.1 - Questao 10 - C/S, SW e SK (2)
+ * Gestao de Pacientes e Gestao de Medicamentos compartilham o modelo "PacienteBasico" (SK).
+ * Gestao de Pacientes e fornecedora (S) dos dados de paciente para Gestao de Consultas (C).
+ * Gestao de Consultas e Gestao de Medicamentos seguem Caminhos Separados (SW):
+ * por isso nao existe nenhuma relacao entre os dois no mapa.
+ */
+ContextMap ClinicaMedica {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+
+	contains GestaoDePacientes
+	contains GestaoDeConsultas
+	contains GestaoDeMedicamentos
+
+	/* Nucleo Compartilhado: PacienteBasico (id, nome, alergias) */
+	GestaoDePacientes [SK]<->[SK] GestaoDeMedicamentos
+
+	/* Cliente-Fornecedor: Consultas consome os dados de Pacientes */
+	GestaoDeConsultas [D,C]<-[U,S] GestaoDePacientes
+}
+
+BoundedContext GestaoDePacientes {
+	type = FEATURE
+	domainVisionStatement = "Gerencia informações sobre pacientes, como nome, endereço, contato, histórico médico e agendamento de consultas."
+	responsibilities = "Pacientes, Histórico médico"
+
+	Aggregate Paciente
+
+	/* Nucleo Compartilhado com Gestao de Medicamentos */
+	Aggregate PacienteBasico
+}
+
+BoundedContext GestaoDeConsultas {
+	type = FEATURE
+	domainVisionStatement = "Gerencia consultas médicas, incluindo agendamento, cancelamento e registro de diagnósticos."
+	responsibilities = "Consultas, Diagnósticos"
+
+	Aggregate Consulta
+}
+
+BoundedContext GestaoDeMedicamentos {
+	type = FEATURE
+	domainVisionStatement = "Gerencia o estoque de medicamentos, incluindo reposição, distribuição e controle de validade."
+	responsibilities = "Estoque, Reposição, Distribuição, Validade"
+
+	Aggregate Medicamento
+	Aggregate Distribuicao
+	/* usa PacienteBasico do nucleo compartilhado */
+}
